@@ -1,8 +1,8 @@
 Download
 ======
 
-Default Controls
-======
+To Download and use, follow the next steps:
+1. Go to [Releases](https://github.com/Toscan0/Gopher360/releases), and choose the latest release
 
 License
 ======
