@@ -182,7 +182,9 @@ void Gopher::loadConfigFile()
     speed_names.push_back("MED");
     speed_names.push_back("HIGH");
   }
-  speed = speeds[0];  // Initialize the speed to the first speed stored. TODO: Set the speed to a saved speed that was last used when the application was closed last.
+  speed = speeds[0];  // Initialize the speed to the first speed stored. 
+
+//TODO: Set the speed to a saved speed that was last used when the application was closed last.
 
   // Swap stick functions
   SWAP_THUMBSTICKS = strtol(cfg.getValueOfKey<std::string>("SWAP_THUMBSTICKS").c_str(), 0, 0);

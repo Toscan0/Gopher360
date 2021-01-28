@@ -47,26 +47,20 @@ int main()
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTitle( TEXT( "Gopher360" ) );
 
-  system("Color 1D");
+  system("Color 0A");
 
-  printf("Welcome to Gopher360 - a VERY fast and lightweight controller-to-keyboard & mouse input tool.\n");
-  printf("All you need is an Xbox360/Xbone controller (wired or wireless adapter), or DualShock (with InputMapper 1.5+)\n");
-  printf("Gopher will autofind the xinput device and begin reading input - if nothing happens, verify connectivity.\n");
-  printf("See the GitHub repository at bit.ly/1syAhMT for more info. Twitter contact: TylerAt60FPS\n\n-------------------------\n\n");
-  
-  SetConsoleTextAttribute(hConsole, 23);
+  SetConsoleTextAttribute(hConsole, 5);
   printf("Gopher is free (as in freedom) software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n");
-  printf("\nYou should have received a copy of the GNU General Public License\nalong with this program. If not, see http://www.gnu.org/licenses/.");
-  SetConsoleTextAttribute(hConsole, 29);
-  printf("\n\n-------------------------\n\n");
+  
+  printf("\nTip: Press left and right bumpers simultaneously to toggle speeds!\n");
 
-  SetConsoleTextAttribute(hConsole, 5); // set color to purple on black (windows only)
-  // 29 default
+  printf("\n-------------------------\n\n");
+
+  SetConsoleTextAttribute(hConsole, 15); 
 
   // dump important tips
-  printf("Tip - Press left and right bumpers simultaneously to toggle speeds! (Default is left and right bumpers, configurable in config.ini)\n");
 
-  if (!isRunningAsAdministrator())
+  if (isRunningAsAdministrator())
   {
     printf("Tip - Not running as an admin! Windows on-screen keyboard and others won't work without admin rights.\n");
   }
