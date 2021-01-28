@@ -1,8 +1,19 @@
 Download
 ======
 
+**NOTE**
+No installation needed, just downlaod and run.
+
 To Download and use, follow the next steps:
 1. Go to [Releases](https://github.com/Toscan0/Gopher360/releases), and choose the latest release
+2. (Optional step) Download the config.ini file 
+3. Download the Gopher360.exe file 
+4. Double left click in the downloaded Gopher360.exe file
+5. And voilá! 
+
+**NOTE**
+If there isn't a config file, the Gopher360 automaticly generates one.
+For more config files go to [Config](https://github.com/Toscan0/Gopher360/tree/master/Configs). Make sure to rename the file to "config"!
 
 License
 ======
