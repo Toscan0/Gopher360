@@ -26,4 +26,5 @@ Credits
 ======
 
 This repository is just my version of the Gopher360.
+
 Check [Tylemagne version](https://github.com/Tylemagne/Gopher360) for the original version.
