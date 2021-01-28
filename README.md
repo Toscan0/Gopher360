@@ -14,6 +14,12 @@ To Download and use, follow the next steps:
 If there isn't a config file, the Gopher360 automaticly generates one.\
 For more config files go to [Configs](https://github.com/Toscan0/Gopher360/tree/master/Configs). Make sure to rename the file to "config" before use!
 
+Basic Controls
+======
+
+![alt text](https://github.com/Toscan0/Gopher360/blob/master/ButtonsLayout/BasicButtonsLayout.png "Basic Controls Layout")
+
+
 License
 ======
 Gopher free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
