@@ -12,7 +12,7 @@ To Download and use, follow the next steps:
 
 > **Note:**
 If there isn't a config file, the Gopher360 automaticly generates one.
-For more config files go to [Configs](https://github.com/Toscan0/Gopher360/tree/master/Configs). Make sure to rename the file to "config"!
+For more config files go to [Configs](https://github.com/Toscan0/Gopher360/tree/master/Configs). Make sure to rename the file to "config" before use!
 
 License
 ======
