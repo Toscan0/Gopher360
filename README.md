@@ -1,6 +1,8 @@
 Download
 ======
 
+> **Note:** No installation needed, just downlaod and run.
+
 **NOTE**
 No installation needed, just downlaod and run.
 
