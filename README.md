@@ -6,8 +6,10 @@ This repository is just my version of the Gopher360. Check [Tylemagne version](h
 
 My changes
 ======
-* Color Scheme: Changed to a dark theme, to 
-  * ![Shell preview](https://github.com/Toscan0/Gopher360/blob/master/Imgs/ColorScheme.png "Shell preview")
+* Color Scheme: Changed to a dark theme, to suit dark mode users
+  * <details><summary>Theme Preview</summary>![Shell preview](https://github.com/Toscan0/Gopher360/blob/master/Imgs/ColorScheme.png "Shell preview")</details>
+* Being able to choose the default load speed
+* A new config file
 
 Download
 ======
