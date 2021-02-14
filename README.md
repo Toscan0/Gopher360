@@ -1,10 +1,13 @@
 About Gopher360
 ======
-Gopher360 or Gopher for friends is a utility that converts Xbox (or PlayStation, if using DS3Tool) controller input into keyboard and mouse input. Perfect for manipulate your computer from the confort of your bed or couch. Works with bluetooth or cable controller.<!--, however if you want to get rid of your controller cable, I advise you to view this [repository]()-->\
+Gopher360 is a utility that converts Xbox (or PlayStation, if using DS3Tool) controller input into keyboard and mouse input. Perfect for manipulate your computer from the confort of your bed or couch. Works with bluetooth or cable controller.<!--, however if you want to get rid of your controller cable, I advise you to view this [repository]()-->\
 No installation is required, just downlaod and run the executable. See [Download section](https://github.com/Toscan0/Gopher360#download) if you need help.\
-This repository is just my version of the Gopher360, where I improved the Color Scheme of the Shell, and added some features around cursor sensitivity.\
-Check [Tylemagne version](https://github.com/Tylemagne/Gopher360) for the original version.
+This repository is just my version of the Gopher360. Check [Tylemagne version](https://github.com/Tylemagne/Gopher360) for the original version.
 
+My changes
+======
+* Color Scheme: Changed to a dark theme, to 
+  * ![Shell preview](https://github.com/Toscan0/Gopher360/blob/master/Imgs/ColorScheme.png "Shell preview")
 
 Download
 ======
