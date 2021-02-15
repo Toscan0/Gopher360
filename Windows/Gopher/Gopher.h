@@ -27,24 +27,24 @@ private:
 	const int _kSleep = 1000 / _kFPS;  // Number of milliseconds to sleep per iteration.
 	int _swap_thumbsticks = 0;             // Swaps the function of the thumbsticks when not equal to 0.
 
-	XINPUT_STATE _currentState;
+	XINPUT_STATE _current_state;
 
 	// Cursor speed settings
-	const float SPEED_ULTRALOW = 0.005f;
-	const float SPEED_LOW = 0.015f;
-	const float SPEED_MED = 0.025f;
-	const float SPEED_HIGH = 0.04f;
-	float speed = SPEED_MED;
-	float acceleration_factor = 0.0f;
+	const float _kSpeed_ultra_low = 0.005f;
+	const float _kSpeed_low = 0.015f;
+	const float _kSpeed_med = 0.025f;
+	const float _kSpeed_high = 0.04f;
+	float _speed = _kSpeed_med;
+	float _acceleration_factor = 0.0f;
 
 	float _xRest = 0.0f;
 	float _yRest = 0.0f;
 
 	bool _disabled = false;           // Disables the Gopher controller mapping.
-	bool _vibrationDisabled = false;  // Prevents Gopher from producing controller vibrations. 
+	bool _vibration_disabled = false;  // Prevents Gopher from producing controller vibrations. 
 	bool _hidden = false;             // Gopher main window visibility.
-	bool _lTriggerPrevious = false;   // Previous state of the left trigger.
-	bool _rTriggerPrevious = false;   // Previous state of the right trigger.
+	bool _left_trigger_previous = false;   // Previous state of the left trigger.
+	bool _right_trigger_previous = false;   // Previous state of the right trigger.
 
 	std::vector<float> speeds;	            // Contains actual speeds to choose
 	std::vector<std::string> speed_names;   // Contains display names of speeds to display
@@ -63,14 +63,12 @@ private:
 	DWORD _disable_on_screen_keyboard = NULL;
 
 	// Gamepad bindings
+	DWORD _gamepad_left_thumb = NULL;
+	DWORD _gamepad_right_thumb = NULL;
 	DWORD _gamepad_dpad_up = NULL;
 	DWORD _gamepad_dpad_down = NULL;
 	DWORD _gamepad_dpad_left = NULL;
 	DWORD _gamepad_dpad_right = NULL;
-	DWORD _gamepad_start = NULL;
-	DWORD _gamepad_back = NULL;
-	DWORD _gamepad_left_thumb = NULL;
-	DWORD _gamepad_right_thumb = NULL;
 	DWORD _gamepad_A = NULL;
 	DWORD _gamepad_B = NULL;
 	DWORD _gamepad_X = NULL;
@@ -79,15 +77,17 @@ private:
 	DWORD _gamepad_right_shoulder = NULL;
 	DWORD _gamepad_trigger_left = NULL;
 	DWORD _gamepad_trigger_right = NULL;
+	DWORD _gamepad_start = NULL;
+	DWORD _gamepad_back = NULL;
 
 	// Button press state logic variables
-	std::map<DWORD, bool> _xboxClickStateLastIteration;
-	std::map<DWORD, bool> _xboxClickIsDown;
-	std::map<DWORD, bool> _xboxClickIsDownLong;
-	std::map<DWORD, int> _xboxClickDownLength;
-	std::map<DWORD, bool> _xboxClickIsUp;
+	std::map<DWORD, bool> _xbox_click_state_last_iteration;
+	std::map<DWORD, bool> _xbox_click_is_down;
+	std::map<DWORD, bool> _xbox_click_is_down_long;
+	std::map<DWORD, int> _xbox_click_down_length;
+	std::map<DWORD, bool> _xbox_click_is_up;
 
-	std::list<WORD> _pressedKeys;
+	std::list<WORD> _pressed_keys;
 
 	CXBOXController* _controller;
 
@@ -96,8 +96,28 @@ public:
 	Gopher(CXBOXController* controller);
 
 	void LoadConfigFile(std::string fileName);
-
 	void Run();
+
+	void ToggleWindowVisibility();
+	void SetWindowVisibility(const bool& hidden) const;
+
+	void HandleDisableButton();
+	void HandleVibrationButton();
+	void HandleMouseMovement();
+	void HandleScrolling();
+	void HandleTriggers(WORD lKey, WORD rKey);
+
+	bool xboxClickStateExists(DWORD xinput);
+	void mapKeyboard(DWORD STATE, WORD key);
+	void mapMouseClick(DWORD STATE, DWORD keyDown, DWORD keyUp);
+	void setXboxClickState(DWORD state);
+
+	void PulseVibrate(const int duration, const int l, const int r) const;
+	float GetDelta(short tx);
+	float GetMult(float length, float deadzone, float accel);
+
+
+	HWND getOskWindow();
 
 private:
 };
