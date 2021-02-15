@@ -19,7 +19,7 @@ public:
   };
 
   template <typename T>
-  static T string_to_T(std::string const &val)
+  static T String_to_T(std::string const &val)
   {
     std::istringstream istr(val);
     T returnVal;

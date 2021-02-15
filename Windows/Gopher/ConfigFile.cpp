@@ -1,9 +1,6 @@
 #include "ConfigFile.h"
-#include <iostream>
-#include <fstream> 
-#include <windows.h>
 
-void ConfigFile::removeComment(std::string &line) const
+void ConfigFile::RemoveComment(std::string &line) const
 {
   if (line.find('#') != line.npos)
   {
@@ -11,12 +8,12 @@ void ConfigFile::removeComment(std::string &line) const
   }
 }
 
-bool ConfigFile::onlyWhitespace(const std::string &line) const
+bool ConfigFile::OnlyWhitespace(const std::string &line) const
 {
   return (line.find_first_not_of(' ') == line.npos);
 }
 
-bool ConfigFile::validLine(const std::string &line) const
+bool ConfigFile::ValidLine(const std::string &line) const
 {
   std::string temp = line;
   temp.erase(0, temp.find_first_not_of("\t "));
@@ -36,7 +33,7 @@ bool ConfigFile::validLine(const std::string &line) const
   return false;
 }
 
-void ConfigFile::extractKey(std::string &key, size_t const &sepPos, const std::string &line) const
+void ConfigFile::ExtractKey(std::string &key, size_t const &sepPos, const std::string &line) const
 {
   key = line.substr(0, sepPos);
   if (key.find('\t') != line.npos || key.find(' ') != line.npos)
@@ -44,22 +41,22 @@ void ConfigFile::extractKey(std::string &key, size_t const &sepPos, const std::s
     key.erase(key.find_first_of("\t "));
   }
 }
-void ConfigFile::extractValue(std::string &value, size_t const &sepPos, const std::string &line) const
+void ConfigFile::ExtractValue(std::string &value, size_t const &sepPos, const std::string &line) const
 {
   value = line.substr(sepPos + 1);
   value.erase(0, value.find_first_not_of("\t "));
   value.erase(value.find_last_not_of("\t ") + 1);
 }
 
-void ConfigFile::extractContents(const std::string &line)
+void ConfigFile::ExtractContents(const std::string &line)
 {
   std::string temp = line;
   temp.erase(0, temp.find_first_not_of("\t "));
   size_t sepPos = temp.find('=');
 
   std::string key, value;
-  extractKey(key, sepPos, temp);
-  extractValue(value, sepPos, temp);
+  ExtractKey(key, sepPos, temp);
+  ExtractValue(value, sepPos, temp);
 
   if (!keyExists(key))
   {
@@ -67,33 +64,33 @@ void ConfigFile::extractContents(const std::string &line)
   }
   else
   {
-    exitWithError("CFG: Can only have unique key names!\n");
+    ExitWithError("CFG: Can only have unique key names!\n");
   }
 }
 
-void ConfigFile::parseLine(const std::string &line, size_t const lineNo)
+void ConfigFile::ParseLine(const std::string &line, size_t const lineNo)
 {
   if (line.find('=') == line.npos)
   {
-    exitWithError("CFG: Couldn't find separator on line: " + Convert::T_to_string(lineNo) + "\n");
+    ExitWithError("CFG: Couldn't find separator on line: " + Convert::T_to_string(lineNo) + "\n");
   }
 
-  if (!validLine(line))
+  if (!ValidLine(line))
   {
-    exitWithError("CFG: Bad format for line: " + Convert::T_to_string(lineNo) + "\n");
+    ExitWithError("CFG: Bad format for line: " + Convert::T_to_string(lineNo) + "\n");
   }
 
-  extractContents(line);
+  ExtractContents(line);
 }
 
 void ConfigFile::ExtractKeys()
 {
   std::ifstream file;
-  file.open(fName.c_str());
+  file.open(file_name.c_str());
 
   if (!file)
   {
-    printf("%s not found! Building a fresh one... ", fName.c_str());
+    printf("%s not found! Building a fresh one... ", file_name.c_str());
 
     std::ofstream outfile("config.ini");
 
@@ -148,17 +145,17 @@ void ConfigFile::ExtractKeys()
 
     outfile.close();
     
-    file.open(fName.c_str());
+    file.open(file_name.c_str());
 
     if (!file)
     {
 
-      exitWithError("\nERROR! Configuration file " + fName + " still couldn't be found!\n");
+      ExitWithError("\nERROR! Configuration file " + file_name + " still couldn't be found!\n");
     }
     else
     {
 
-      printf("Success!\nNow using %s.\n", fName.c_str());
+      printf("Success!\nNow using %s.\n", file_name.c_str());
     }
   }
 
@@ -176,13 +173,13 @@ void ConfigFile::ExtractKeys()
       continue;
     }
 
-    removeComment(temp);
-    if (onlyWhitespace(temp))
+    RemoveComment(temp);
+    if (OnlyWhitespace(temp))
     {
       continue;
     }
 
-    parseLine(temp, lineNo);
+    ParseLine(temp, lineNo);
   }
 
   file.close();
@@ -190,7 +187,7 @@ void ConfigFile::ExtractKeys()
 
 ConfigFile::ConfigFile(const std::string &fName)
 {
-  this->fName = fName;
+  this->file_name = fName;
   ExtractKeys();
 }
 
@@ -199,7 +196,7 @@ bool ConfigFile::keyExists(const std::string &key) const
   return contents.find(key) != contents.end();
 }
 
-void ConfigFile::exitWithError(const std::string &error)
+void ConfigFile::ExitWithError(const std::string &error)
 {
   std::cout << error;
   std::cin.ignore();

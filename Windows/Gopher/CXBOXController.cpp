@@ -2,21 +2,21 @@
 
 CXBOXController::CXBOXController(int playerNumber)
 {
-  _controllerNum = playerNumber - 1; //set number
+	_controller_num = playerNumber - 1; //set number
 }
 
 XINPUT_STATE CXBOXController::GetState()
 {
-  ZeroMemory(&this->_controllerState, sizeof(XINPUT_STATE));
-  XInputGetState(_controllerNum, &this->_controllerState);
+  ZeroMemory(&this->_controller_state, sizeof(XINPUT_STATE));
+  XInputGetState(_controller_num, &this->_controller_state);
 
-  return _controllerState;
+  return _controller_state;
 }
 
 bool CXBOXController::IsConnected()
 {
-  ZeroMemory(&this->_controllerState, sizeof(XINPUT_STATE));
-  DWORD Result = XInputGetState(_controllerNum, &this->_controllerState);
+  ZeroMemory(&this->_controller_state, sizeof(XINPUT_STATE));
+  DWORD Result = XInputGetState(_controller_num, &this->_controller_state);
 
   return (Result == ERROR_SUCCESS);
 }
@@ -34,5 +34,5 @@ void CXBOXController::Vibrate(int leftVal, int rightVal)
   Vibration.wRightMotorSpeed = rightVal;
 
   // Vibrate the controller
-  XInputSetState(_controllerNum, &Vibration);
+  XInputSetState(_controller_num, &Vibration);
 }

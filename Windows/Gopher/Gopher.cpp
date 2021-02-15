@@ -12,67 +12,67 @@ void Gopher::LoadConfigFile(std::string fileName)
 	//--------------------------------
 	// Mouse bindings
 	//--------------------------------
-	_mouse_left_click = strtol(cfg.getValueOfKey<std::string>("CONFIG_MOUSE_LEFT").c_str(), 0, 0);
-	_mouse_right_click = strtol(cfg.getValueOfKey<std::string>("CONFIG_MOUSE_RIGHT").c_str(), 0, 0);
-	_mouse_middle_click = strtol(cfg.getValueOfKey<std::string>("CONFIG_MOUSE_MIDDLE").c_str(), 0, 0);
+	_mouse_left_click = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_LEFT").c_str(), 0, 0);
+	_mouse_right_click = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_RIGHT").c_str(), 0, 0);
+	_mouse_middle_click = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_MIDDLE").c_str(), 0, 0);
 	
 	//--------------------------------
 	// Gopher bindings
 	//--------------------------------
-	_console_hide = strtol(cfg.getValueOfKey<std::string>("CONFIG_HIDE").c_str(), 0, 0);
-	_disable_gopher = strtol(cfg.getValueOfKey<std::string>("CONFIG_DISABLE").c_str(), 0, 0);
-	_disable_vibration = strtol(cfg.getValueOfKey<std::string>("CONFIG_DISABLE_VIBRATION").c_str(), 0, 0);
-	CONFIG_SPEED_CHANGE = strtol(cfg.getValueOfKey<std::string>("CONFIG_SPEED_CHANGE").c_str(), 0, 0);
-	_disable_on_screen_keyboard = strtol(cfg.getValueOfKey<std::string>("CONFIG_OSK").c_str(), 0, 0);
+	_console_hide = strtol(cfg.GetValueOfKey<std::string>("CONFIG_HIDE").c_str(), 0, 0);
+	_disable_gopher = strtol(cfg.GetValueOfKey<std::string>("CONFIG_DISABLE").c_str(), 0, 0);
+	_disable_vibration = strtol(cfg.GetValueOfKey<std::string>("CONFIG_DISABLE_VIBRATION").c_str(), 0, 0);
+	CONFIG_SPEED_CHANGE = strtol(cfg.GetValueOfKey<std::string>("CONFIG_SPEED_CHANGE").c_str(), 0, 0);
+	_disable_on_screen_keyboard = strtol(cfg.GetValueOfKey<std::string>("CONFIG_OSK").c_str(), 0, 0);
 
 	//--------------------------------
 	// Controller bindings
 	//--------------------------------
-	_gamepad_left_thumb = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_LEFT_THUMB").c_str(), 0, 0);
-	_gamepad_right_thumb = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_RIGHT_THUMB").c_str(), 0, 0);
-	_gamepad_dpad_up = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_DPAD_UP").c_str(), 0, 0);
-	_gamepad_dpad_down = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_DPAD_DOWN").c_str(), 0, 0);
-	_gamepad_dpad_left = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_DPAD_LEFT").c_str(), 0, 0);
-	_gamepad_dpad_right = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_DPAD_RIGHT").c_str(), 0, 0);
-	_gamepad_A = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_A").c_str(), 0, 0);
-	_gamepad_B = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_B").c_str(), 0, 0);
-	_gamepad_X = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_X").c_str(), 0, 0);
-	_gamepad_Y = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_Y").c_str(), 0, 0);
-	_gamepad_left_shoulder = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_LEFT_SHOULDER").c_str(), 0, 0);
-	_gamepad_right_shoulder = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_RIGHT_SHOULDER").c_str(), 0, 0);
-	_gamepad_trigger_left = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_TRIGGER_LEFT").c_str(), 0, 0);
-	_gamepad_trigger_right = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_TRIGGER_RIGHT").c_str(), 0, 0);
-	_gamepad_start = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_START").c_str(), 0, 0);
-	_gamepad_back = strtol(cfg.getValueOfKey<std::string>("GAMEPAD_BACK").c_str(), 0, 0);
+	_gamepad_left_thumb = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_LEFT_THUMB").c_str(), 0, 0);
+	_gamepad_right_thumb = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_RIGHT_THUMB").c_str(), 0, 0);
+	_gamepad_dpad_up = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_UP").c_str(), 0, 0);
+	_gamepad_dpad_down = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_DOWN").c_str(), 0, 0);
+	_gamepad_dpad_left = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_LEFT").c_str(), 0, 0);
+	_gamepad_dpad_right = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_RIGHT").c_str(), 0, 0);
+	_gamepad_A = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_A").c_str(), 0, 0);
+	_gamepad_B = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_B").c_str(), 0, 0);
+	_gamepad_X = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_X").c_str(), 0, 0);
+	_gamepad_Y = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_Y").c_str(), 0, 0);
+	_gamepad_left_shoulder = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_LEFT_SHOULDER").c_str(), 0, 0);
+	_gamepad_right_shoulder = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_RIGHT_SHOULDER").c_str(), 0, 0);
+	_gamepad_trigger_left = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_TRIGGER_LEFT").c_str(), 0, 0);
+	_gamepad_trigger_right = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_TRIGGER_RIGHT").c_str(), 0, 0);
+	_gamepad_start = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_START").c_str(), 0, 0);
+	_gamepad_back = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_BACK").c_str(), 0, 0);
 
 	//--------------------------------
 	// Advanced settings
 	//--------------------------------
 
 	// Acceleration factor
-	_acceleration_factor = strtof(cfg.getValueOfKey<std::string>("ACCELERATION_FACTOR").c_str(), 0);
+	_acceleration_factor = strtof(cfg.GetValueOfKey<std::string>("ACCELERATION_FACTOR").c_str(), 0);
 
 	// Dead zones
-	_mouse_movement_dead_zone = strtol(cfg.getValueOfKey<std::string>("DEAD_ZONE").c_str(), 0, 0);
+	_mouse_movement_dead_zone = strtol(cfg.GetValueOfKey<std::string>("DEAD_ZONE").c_str(), 0, 0);
 	if (_mouse_movement_dead_zone == 0)
 	{
 		_mouse_movement_dead_zone = 6000;
 	}
 
-	_scroll_dead_zone = strtol(cfg.getValueOfKey<std::string>("SCROLL_DEAD_ZONE").c_str(), 0, 0);
+	_scroll_dead_zone = strtol(cfg.GetValueOfKey<std::string>("SCROLL_DEAD_ZONE").c_str(), 0, 0);
 	if (_scroll_dead_zone == 0)
 	{
 		_scroll_dead_zone = 5000;
 	}
 
-	_scroll_speed = strtof(cfg.getValueOfKey<std::string>("SCROLL_SPEED").c_str(), 0);
+	_scroll_speed = strtof(cfg.GetValueOfKey<std::string>("SCROLL_SPEED").c_str(), 0);
 	if (_scroll_speed < 0.00001f)
 	{
 		_scroll_speed = 0.1f;
 	}
 
 	// Variable cursor speeds
-	std::istringstream cursor_speed = std::istringstream(cfg.getValueOfKey<std::string>("CURSOR_SPEED"));
+	std::istringstream cursor_speed = std::istringstream(cfg.GetValueOfKey<std::string>("CURSOR_SPEED"));
 	int cur_speed_idx = 1;
 	const float CUR_SPEED_MIN = 0.0001f;
 	const float CUR_SPEED_MAX = 1.0f;
@@ -114,7 +114,7 @@ void Gopher::LoadConfigFile(std::string fileName)
 		speeds.push_back(0.004f);
 	}
 
-	speed_idx = strtof(cfg.getValueOfKey<std::string>("CURSOR_SPEED_INDEX").c_str(), 0);
+	speed_idx = strtof(cfg.GetValueOfKey<std::string>("CURSOR_SPEED_INDEX").c_str(), 0);
 	if (speed_idx >= speeds.size() || speed_idx < 0)
 	{
 		speed_idx = 0;
@@ -123,7 +123,7 @@ void Gopher::LoadConfigFile(std::string fileName)
 	printf("Speed loaded %f (%s)...\n", _speed, speed_names[speed_idx].c_str());
 
 	// Swap stick functions
-	_swap_thumbsticks = strtol(cfg.getValueOfKey<std::string>("SWAP_THUMBSTICKS").c_str(), 0, 0);
+	_swap_thumbsticks = strtol(cfg.GetValueOfKey<std::string>("SWAP_THUMBSTICKS").c_str(), 0, 0);
 
 	// Set the initial window visibility
 	SetWindowVisibility(_hidden);

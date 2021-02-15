@@ -5,12 +5,13 @@
 
 class CXBOXController
 {
-private:
-  XINPUT_STATE _controllerState;
-  int _controllerNum;
-public:
-  CXBOXController(int playerNumber);
-  XINPUT_STATE GetState();
-  bool IsConnected();
-  void Vibrate(int leftVal, int rightVal);
+	private:
+	  XINPUT_STATE _controller_state;
+	  int _controller_num;
+
+	public:
+	  CXBOXController(int playerNumber);
+	  XINPUT_STATE GetState();
+	  bool IsConnected();
+	  void Vibrate(int leftVal, int rightVal);
 };
