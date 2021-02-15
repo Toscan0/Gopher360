@@ -457,6 +457,8 @@ void Gopher::HandleTriggers(WORD lKey, WORD rKey)
 		if (lTriggerIsDown)
 		{
 			InputKeyboardDown(lKey);
+
+			ChangeVolume(0.3f);
 		}
 		else
 		{
@@ -752,3 +754,38 @@ HWND Gopher::GetOskWindow()
 	return ret;
 }
 
+bool Gopher::ChangeVolume(float newVolume)
+{
+	HRESULT hr = NULL;
+
+	CoInitialize(NULL);
+
+	IMMDeviceEnumerator *deviceEnumerator = NULL;
+	hr = CoCreateInstance(__uuidof(MMDeviceEnumerator), NULL, CLSCTX_INPROC_SERVER,
+		__uuidof(IMMDeviceEnumerator), (LPVOID *)&deviceEnumerator);
+	if (FAILED(hr)) {
+		return FALSE;
+	}
+
+	IMMDevice *defaultDevice = NULL;
+	hr = deviceEnumerator->GetDefaultAudioEndpoint(eRender, eConsole, &defaultDevice);
+	deviceEnumerator->Release();
+	if (FAILED(hr)) {
+		return FALSE;
+	}
+
+	IAudioEndpointVolume *endpointVolume = NULL;
+	hr = defaultDevice->Activate(__uuidof(IAudioEndpointVolume),
+		CLSCTX_INPROC_SERVER, NULL, (LPVOID *)&endpointVolume);
+	defaultDevice->Release();
+	if (FAILED(hr)) {
+		return FALSE;
+	}
+	
+	hr = endpointVolume->SetMasterVolumeLevelScalar(newVolume, NULL);
+	endpointVolume->Release();
+	
+	CoUninitialize();
+
+	return SUCCEEDED(hr);
+}

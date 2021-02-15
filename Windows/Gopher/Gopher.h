@@ -9,9 +9,8 @@
 #include <ShlObj.h>
 #include <xinput.h> // controller
 #include <stdio.h> // for printf
-#include <mmdeviceapi.h> // vol
-#include <endpointvolume.h> // vol
-
+#include <mmdeviceapi.h> // volume
+#include <endpointvolume.h> // volume
 #include "CXBOXController.h"
 #include "ConfigFile.h"
 #include "InputKeyboard.h"
@@ -118,8 +117,8 @@ public:
 	void PulseVibrate(const int duration, const int l, const int r) const;
 	float GetDelta(short tx);
 	float GetMult(float length, float deadzone, float accel = 0.0f);
-
-
+	
+	bool ChangeVolume(float newVolume);
 	HWND GetOskWindow();
 
 private:
