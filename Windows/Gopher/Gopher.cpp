@@ -155,21 +155,21 @@ void Gopher::Run()
 
 	if (_mouse_left_click)
 	{
-		mapMouseClick(_mouse_left_click, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);
+		MapMouseClick(_mouse_left_click, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);
 	}
 	if (_mouse_right_click)
 	{
-		mapMouseClick(_mouse_right_click, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP);
+		MapMouseClick(_mouse_right_click, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP);
 	}
 	if (_mouse_middle_click)
 	{
-		mapMouseClick(_mouse_middle_click, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP);
+		MapMouseClick(_mouse_middle_click, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP);
 	}
 
 	// Hides the console
 	if (_console_hide)
 	{
-		setXboxClickState(_console_hide);
+		SetXboxClickState(_console_hide);
 		if (_xbox_click_is_down[_console_hide])
 		{
 			ToggleWindowVisibility();
@@ -179,11 +179,11 @@ void Gopher::Run()
 	// Toggle the on-screen keyboard
 	if (_disable_on_screen_keyboard)
 	{
-		setXboxClickState(_disable_on_screen_keyboard);
+		SetXboxClickState(_disable_on_screen_keyboard);
 		if (_xbox_click_is_down[_disable_on_screen_keyboard])
 		{
 			// Get the otk window
-			HWND otk_win = getOskWindow();
+			HWND otk_win = GetOskWindow();
 			if (otk_win == NULL)
 			{
 				printf("Please start the On-screen keyboard first\n");
@@ -200,7 +200,7 @@ void Gopher::Run()
 	}
 
 	// Will change between the current speed values
-	setXboxClickState(CONFIG_SPEED_CHANGE);
+	SetXboxClickState(CONFIG_SPEED_CHANGE);
 	if (_xbox_click_is_down[CONFIG_SPEED_CHANGE])
 	{
 		const int CHANGE_SPEED_VIBRATION_INTENSITY = 65000;   // Speed of the vibration motors when changing cursor speed.
@@ -223,59 +223,59 @@ void Gopher::Run()
 	HandleTriggers(_gamepad_trigger_left, _gamepad_trigger_right);
 	if (_gamepad_dpad_up)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_DPAD_UP, _gamepad_dpad_up);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_UP, _gamepad_dpad_up);
 	}
 	if (_gamepad_dpad_down)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_DPAD_DOWN, _gamepad_dpad_down);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_DOWN, _gamepad_dpad_down);
 	}
 	if (_gamepad_dpad_left)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_DPAD_LEFT, _gamepad_dpad_left);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_LEFT, _gamepad_dpad_left);
 	}
 	if (_gamepad_dpad_right)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_DPAD_RIGHT, _gamepad_dpad_right);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_RIGHT, _gamepad_dpad_right);
 	}
 	if (_gamepad_start)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_START, _gamepad_start);
+		MapKeyboard(XINPUT_GAMEPAD_START, _gamepad_start);
 	}
 	if (_gamepad_back)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_BACK, _gamepad_back);
+		MapKeyboard(XINPUT_GAMEPAD_BACK, _gamepad_back);
 	}
 	if (_gamepad_left_thumb)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_LEFT_THUMB, _gamepad_left_thumb);
+		MapKeyboard(XINPUT_GAMEPAD_LEFT_THUMB, _gamepad_left_thumb);
 	}
 	if (_gamepad_right_thumb)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_RIGHT_THUMB, _gamepad_right_thumb);
+		MapKeyboard(XINPUT_GAMEPAD_RIGHT_THUMB, _gamepad_right_thumb);
 	}
 	if (_gamepad_left_shoulder)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_LEFT_SHOULDER, _gamepad_left_shoulder);
+		MapKeyboard(XINPUT_GAMEPAD_LEFT_SHOULDER, _gamepad_left_shoulder);
 	}
 	if (_gamepad_right_shoulder)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_RIGHT_SHOULDER, _gamepad_right_shoulder);
+		MapKeyboard(XINPUT_GAMEPAD_RIGHT_SHOULDER, _gamepad_right_shoulder);
 	}
 	if (_gamepad_A)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_A, _gamepad_A);
+		MapKeyboard(XINPUT_GAMEPAD_A, _gamepad_A);
 	}
 	if (_gamepad_B)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_B, _gamepad_B);
+		MapKeyboard(XINPUT_GAMEPAD_B, _gamepad_B);
 	}
 	if (_gamepad_X)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_X, _gamepad_X);
+		MapKeyboard(XINPUT_GAMEPAD_X, _gamepad_X);
 	}
 	if (_gamepad_Y)
 	{
-		mapKeyboard(XINPUT_GAMEPAD_Y, _gamepad_Y);
+		MapKeyboard(XINPUT_GAMEPAD_Y, _gamepad_Y);
 	}
 }
 
@@ -285,7 +285,7 @@ void Gopher::Run()
 //	for the disable configuration command.
 void Gopher::HandleDisableButton()
 {
-	setXboxClickState(_disable_gopher);
+	SetXboxClickState(_disable_gopher);
 	if (_xbox_click_is_down[_disable_gopher])
 	{
 		int duration = 0;   // milliseconds
@@ -307,15 +307,15 @@ void Gopher::HandleDisableButton()
 				// Handle mouse buttons
 				if (*it == VK_LBUTTON)
 				{
-					mouseEvent(MOUSEEVENTF_LEFTUP);
+					MouseEvent(MOUSEEVENTF_LEFTUP);
 				}
 				else if (*it == VK_RBUTTON)
 				{
-					mouseEvent(MOUSEEVENTF_RIGHTUP);
+					MouseEvent(MOUSEEVENTF_RIGHTUP);
 				}
 				else if (*it == VK_MBUTTON)
 				{
-					mouseEvent(MOUSEEVENTF_MIDDLEUP);
+					MouseEvent(MOUSEEVENTF_MIDDLEUP);
 				}
 				// Handle keys (TODO: support mouse X1 and X2 buttons)
 				else
@@ -343,7 +343,7 @@ void Gopher::HandleDisableButton()
 //	the vibration.
 void Gopher::HandleVibrationButton()
 {
-	setXboxClickState(_disable_vibration);
+	SetXboxClickState(_disable_vibration);
 	if (_xbox_click_is_down[_disable_vibration])
 	{
 		_vibration_disabled = !_vibration_disabled;
@@ -429,9 +429,9 @@ void Gopher::HandleScrolling()
 
 	if (magnitude > _scroll_dead_zone)
 	{
-		mouseEvent(MOUSEEVENTF_HWHEEL, 
+		MouseEvent(MOUSEEVENTF_HWHEEL,
 			tx * GetMult(tx * tx, _scroll_dead_zone) * _scroll_speed);
-		mouseEvent(MOUSEEVENTF_WHEEL,
+		MouseEvent(MOUSEEVENTF_WHEEL,
 			ty * GetMult(ty * ty, _scroll_dead_zone) * _scroll_speed);
 	}
 }
@@ -557,13 +557,178 @@ void Gopher::PulseVibrate(const int duration, const int l, const int r) const
 	}
 }
 
+// Description:
+//   Presses or releases a mouse button based on a mapped Gopher state
+//
+// Params:
+//   STATE    The Gopher state, or command, to trigger a mouse event
+//   keyDown  The button down event for a mouse event
+//   keyUp    The button up event for a mouse event
+void Gopher::MapMouseClick(DWORD STATE, DWORD keyDown, DWORD keyUp)
+{
+	SetXboxClickState(STATE);
+	if (_xbox_click_is_down[STATE])
+	{
+		MouseEvent(keyDown);
+
+		// Add key to the list of pressed keys.
+		if (keyDown == MOUSEEVENTF_LEFTDOWN)
+		{
+			_pressed_keys.push_back(VK_LBUTTON);
+		}
+		else if (keyDown == MOUSEEVENTF_RIGHTDOWN)
+		{
+			_pressed_keys.push_back(VK_RBUTTON);
+		}
+		else if (keyDown == MOUSEEVENTF_MIDDLEDOWN)
+		{
+			_pressed_keys.push_back(VK_MBUTTON);
+		}
+	}
+
+	if (_xbox_click_is_up[STATE])
+	{
+		MouseEvent(keyUp);
+
+		// Remove key from the list of pressed keys.
+		if (keyUp == MOUSEEVENTF_LEFTUP)
+		{
+			ErasePressedKey(VK_LBUTTON);
+		}
+		else if (keyUp == MOUSEEVENTF_RIGHTUP)
+		{
+			ErasePressedKey(VK_RBUTTON);
+		}
+		else if (keyUp == MOUSEEVENTF_MIDDLEUP)
+		{
+			ErasePressedKey(VK_MBUTTON);
+		}
+	}
+}
+
+// Description:
+//   Removes an entry for a pressed key from the list.
+// Params:
+//   key  The key value to remove from the pressed key list. 
+// Returns:
+//   True if the given key was found and removed from the list.
+bool Gopher::ErasePressedKey(WORD key)
+{
+	for (std::list<WORD>::iterator it = _pressed_keys.begin();
+		it != _pressed_keys.end();
+		++it)
+	{
+		if (*it == key)
+		{
+			_pressed_keys.erase(it);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+// Description:
+//   Presses or releases a key based on a mapped Gopher state.
+// Params:
+//   STATE  The Gopher state, or command, to trigger a key event
+//   key    The key value to input to the system
+void Gopher::MapKeyboard(DWORD STATE, WORD key)
+{
+	SetXboxClickState(STATE);
+	if (_xbox_click_is_down[STATE])
+	{
+		InputKeyboardDown(key);
+
+		// Add key to the list of pressed keys.
+		_pressed_keys.push_back(key);
+	}
+
+	if (_xbox_click_is_up[STATE])
+	{
+		InputKeyboardUp(key);
+
+		// Remove key from the list of pressed keys.
+		ErasePressedKey(key);
+	}
+}
+
+// Description:
+//   Handles the state of a controller button press.
+// Params:
+//   STATE  The Gopher state, or command, to update
+void Gopher::SetXboxClickState(DWORD STATE)
+{
+	_xbox_click_is_down[STATE] = false;
+	_xbox_click_is_up[STATE] = false;
+
+	if (!this->XboxClickStateExists(STATE))
+	{
+		_xbox_click_state_last_iteration[STATE] = false;
+	}
+
+	bool isDown = (_current_state.Gamepad.wButtons & STATE) == STATE;
+
+	// Detect if the button has been pressed.
+	if (isDown && !_xbox_click_state_last_iteration[STATE])
+	{
+		_xbox_click_state_last_iteration[STATE] = true;
+		_xbox_click_is_down[STATE] = true;
+		_xbox_click_down_length[STATE] = 0;
+		_xbox_click_is_down_long[STATE] = false;
+	}
+
+	// Detect if the button has been held as a long press.
+	if (isDown && _xbox_click_state_last_iteration[STATE])
+	{
+		const int LONG_PRESS_TIME = 200;  // milliseconds
+
+		++_xbox_click_down_length[STATE];
+		if (_xbox_click_down_length[STATE] * _kSleep > LONG_PRESS_TIME)
+		{
+			_xbox_click_is_down_long[STATE] = true;
+		}
+	}
+
+	// Detect if the button has been released.
+	if (!isDown && _xbox_click_state_last_iteration[STATE])
+	{
+		_xbox_click_state_last_iteration[STATE] = false;
+		_xbox_click_is_up[STATE] = true;
+		_xbox_click_is_down_long[STATE] = false;
+	}
+
+	_xbox_click_state_last_iteration[STATE] = isDown;
+}
+
+// Description:
+//   Check to see if a controller state exists in Gopher's button map.
+// Params:
+//   xinput   The Gopher state, or command, to search for
+// Returns:
+//   true if the state is present in the map.
+bool Gopher::XboxClickStateExists(DWORD STATE)
+{
+	auto it = _xbox_click_state_last_iteration.find(STATE);
+	if (it == _xbox_click_state_last_iteration.end())
+	{
+		return false;
+	}
+
+	return true;
+}
 
 
-
-
-
-
-
+// Description:
+//   Finds the On-Screen Keyboard if it is open.
+// Returns:
+//   If found, the handle to the On-Screen Keyboard handle. Otherwise, returns NULL.
+HWND Gopher::GetOskWindow()
+{
+	HWND ret = NULL;
+	EnumWindows(EnumWindowsProc, (LPARAM)&ret);
+	return ret;
+}
 
 
 
@@ -572,6 +737,8 @@ void Gopher::PulseVibrate(const int duration, const int l, const int r) const
 
 
 ////////////////
+
+
 // Description:
 //   Send a keyboard input to the system based on the key value
 //     and its event type.
@@ -612,11 +779,10 @@ void InputKeyboardUp(WORD cmd)
 // Description:
 //   Send a mouse input based on a mouse event type.
 //   See https://msdn.microsoft.com/en-us/library/windows/desktop/ms646310(v=vs.85).aspx
-//
 // Params:
 //   dwFlags    The mouse event to send
 //   mouseData  Additional information needed for certain mouse events (Optional)
-void mouseEvent(DWORD dwFlags, DWORD mouseData = 0)
+void MouseEvent(DWORD dwFlags, DWORD mouseData = 0)
 {
 	INPUT input;
 	input.type = INPUT_MOUSE;
@@ -637,4 +803,25 @@ void mouseEvent(DWORD dwFlags, DWORD mouseData = 0)
 	input.mi.dwFlags = dwFlags;
 	input.mi.time = 0;
 	SendInput(1, &input, sizeof(INPUT));
+}
+
+// Description:
+//   Callback function used for the EnumWindows call to determine if we
+//     have found the On-Screen Keyboard window.
+// Params:
+//   curWnd   The current window to check
+//   lParam   A callback parameter used to store the window if it is found
+// Returns:
+//   FALSE when the the desired window is found.
+static BOOL CALLBACK EnumWindowsProc(HWND curWnd, LPARAM lParam)
+{
+	TCHAR title[256];
+	// Check to see if the window title matches what we are looking for.
+	if (GetWindowText(curWnd, title, 256) && !_tcscmp(title, _T("On-Screen Keyboard")))
+	{
+		*(HWND*)lParam = curWnd;
+		return FALSE;  // Correct window found, stop enumerating through windows.
+	}
+
+	return TRUE;
 }

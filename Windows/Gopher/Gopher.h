@@ -107,17 +107,19 @@ public:
 	void HandleScrolling();
 	void HandleTriggers(WORD lKey, WORD rKey);
 
-	bool xboxClickStateExists(DWORD xinput);
-	void mapKeyboard(DWORD STATE, WORD key);
-	void mapMouseClick(DWORD STATE, DWORD keyDown, DWORD keyUp);
-	void setXboxClickState(DWORD state);
+	void MapMouseClick(DWORD STATE, DWORD keyDown, DWORD keyUp);
+	void MapKeyboard(DWORD STATE, WORD key);
+
+	void SetXboxClickState(DWORD state);
+	bool XboxClickStateExists(DWORD xinput);
 
 	void PulseVibrate(const int duration, const int l, const int r) const;
 	float GetDelta(short tx);
 	float GetMult(float length, float deadzone, float accel);
 
 
-	HWND getOskWindow();
+	HWND GetOskWindow();
 
 private:
+	bool ErasePressedKey(WORD key);
 };
