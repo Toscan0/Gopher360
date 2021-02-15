@@ -12,14 +12,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ---------------------------------------------------------------------------------*/
-#include <windows.h> // for Beep()
 #include <iostream>
+#include <windows.h> // for Beep()
+#include "CXBOXController.h"
 #include "Gopher.h"
 
 #pragma comment(lib, "XInput9_1_0.lib")
 #pragma comment(lib, "winmm") // for volume
 
-BOOL isRunningAsAdministrator(); // Check if administrator, makes on-screen keyboard clickable
+BOOL IsRunningAsAdministrator(); // Check if administrator, makes on-screen keyboard clickable
 
 int main()
 {
@@ -37,21 +38,19 @@ int main()
 
   SetConsoleTextAttribute(hConsole, 15); 
 
-  if (isRunningAsAdministrator())
+  if (IsRunningAsAdministrator())
   {
     printf("Tip - Not running as an admin! Windows on-screen keyboard and others won't work without admin rights.\n");
   }
 
-  gopher.loadConfigFile();
-
-  // Start the Gopher program loop
+  gopher.LoadConfigFile("config.ini");
   while (true)
   {
-    gopher.loop();
+    gopher.Run();
   }
 }
 
-BOOL isRunningAsAdministrator()
+BOOL IsRunningAsAdministrator()
 {
   BOOL   fRet = FALSE;
   HANDLE hToken = NULL;

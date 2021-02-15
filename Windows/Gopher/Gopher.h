@@ -1,134 +1,103 @@
-#include <windows.h> // for Beep()
 #include <iostream>
+#include <string>
 #include <vector>
 #include <list>
-#include <xinput.h> // controller
-#include <stdio.h> // for printf
 #include <cmath> // for abs()
-#include <mmdeviceapi.h> // vol
-#include <endpointvolume.h> // vol
+#include <map>
+#include <windows.h> // for Beep()
 #include <tchar.h>
 #include <ShlObj.h>
-
-#include <map>
+#include <xinput.h> // controller
+#include <stdio.h> // for printf
+#include <mmdeviceapi.h> // vol
+#include <endpointvolume.h> // vol
 
 #include "CXBOXController.h"
+#include "ConfigFile.h"
 
 #pragma once
 class Gopher
 {
 private:
-  int DEAD_ZONE = 6000;                 // Thumbstick dead zone to use for mouse movement. Absolute maximum shall be 65534.
-  int SCROLL_DEAD_ZONE = 5000;          // Thumbstick dead zone to use for scroll wheel movement. Absolute maximum shall be 65534.
-  int TRIGGER_DEAD_ZONE = 0;            // Dead zone for the left and right triggers to detect a trigger press. 0 means that any press to trigger will be read as a button press.
-  float SCROLL_SPEED = 0.1f;             // Speed at which you scroll.
-  const int FPS = 150;                  // Update rate of the main Gopher loop. Interpreted as cycles-per-second.
-  const int SLEEP_AMOUNT = 1000 / FPS;  // Number of milliseconds to sleep per iteration.
-  int SWAP_THUMBSTICKS = 0;             // Swaps the function of the thumbsticks when not equal to 0.
+	int _mouse_movement_dead_zone = 6000;                 // Thumbstick dead zone to use for mouse movement. Absolute maximum shall be 65534.
+	int _scroll_dead_zone = 5000;          // Thumbstick dead zone to use for scroll wheel movement. Absolute maximum shall be 65534.
+	float _scroll_speed = 0.1f;             // Speed at which you scroll.
+	const int TRIGGER_DEAD_ZONE = 0;            // Dead zone for the left and right triggers to detect a trigger press. 0 means that any press to trigger will be read as a button press.
+	const int _kFPS = 150;                  // Update rate of the main Gopher loop. Interpreted as cycles-per-second.
+	const int _kSleep = 1000 / _kFPS;  // Number of milliseconds to sleep per iteration.
+	int _swap_thumbsticks = 0;             // Swaps the function of the thumbsticks when not equal to 0.
 
-  XINPUT_STATE _currentState;
+	XINPUT_STATE _currentState;
 
-  // Cursor speed settings
-  const float SPEED_ULTRALOW = 0.005f;
-  const float SPEED_LOW = 0.015f;
-  const float SPEED_MED = 0.025f;
-  const float SPEED_HIGH = 0.04f;
-  float speed = SPEED_MED;
-  float acceleration_factor = 0.0f;
+	// Cursor speed settings
+	const float SPEED_ULTRALOW = 0.005f;
+	const float SPEED_LOW = 0.015f;
+	const float SPEED_MED = 0.025f;
+	const float SPEED_HIGH = 0.04f;
+	float speed = SPEED_MED;
+	float acceleration_factor = 0.0f;
 
-  float _xRest = 0.0f;
-  float _yRest = 0.0f;
+	float _xRest = 0.0f;
+	float _yRest = 0.0f;
 
-  bool _disabled = false;           // Disables the Gopher controller mapping.
-  bool _vibrationDisabled = false;  // Prevents Gopher from producing controller vibrations. 
-  bool _hidden = false;             // Gopher main window visibility.
-  bool _lTriggerPrevious = false;   // Previous state of the left trigger.
-  bool _rTriggerPrevious = false;   // Previous state of the right trigger.
+	bool _disabled = false;           // Disables the Gopher controller mapping.
+	bool _vibrationDisabled = false;  // Prevents Gopher from producing controller vibrations. 
+	bool _hidden = false;             // Gopher main window visibility.
+	bool _lTriggerPrevious = false;   // Previous state of the left trigger.
+	bool _rTriggerPrevious = false;   // Previous state of the right trigger.
 
-  std::vector<float> speeds;	            // Contains actual speeds to choose
-  std::vector<std::string> speed_names;   // Contains display names of speeds to display
-  unsigned int speed_idx = 0;
+	std::vector<float> speeds;	            // Contains actual speeds to choose
+	std::vector<std::string> speed_names;   // Contains display names of speeds to display
+	unsigned int speed_idx = 0;
 
-  // Mouse Clicks
-  DWORD CONFIG_MOUSE_LEFT = NULL;
-  DWORD CONFIG_MOUSE_RIGHT = NULL;
-  DWORD CONFIG_MOUSE_MIDDLE = NULL;
-  
-  // Gopher Settings
-  DWORD CONFIG_HIDE = NULL;
-  DWORD CONFIG_DISABLE = NULL;
-  DWORD CONFIG_DISABLE_VIBRATION = NULL;
-  DWORD CONFIG_SPEED_CHANGE = NULL;
-  DWORD CONFIG_OSK = NULL;
+	// Mouse Clicks
+	DWORD _mouse_left_click = NULL;
+	DWORD _mouse_right_click = NULL;
+	DWORD _mouse_middle_click = NULL;
 
-  // Gamepad bindings
-  DWORD GAMEPAD_DPAD_UP = NULL;
-  DWORD GAMEPAD_DPAD_DOWN = NULL;
-  DWORD GAMEPAD_DPAD_LEFT = NULL;
-  DWORD GAMEPAD_DPAD_RIGHT = NULL;
-  DWORD GAMEPAD_START = NULL;
-  DWORD GAMEPAD_BACK = NULL;
-  DWORD GAMEPAD_LEFT_THUMB = NULL;
-  DWORD GAMEPAD_RIGHT_THUMB = NULL;
-  DWORD GAMEPAD_LEFT_SHOULDER = NULL;
-  DWORD GAMEPAD_RIGHT_SHOULDER = NULL;
-  DWORD GAMEPAD_A = NULL;
-  DWORD GAMEPAD_B = NULL;
-  DWORD GAMEPAD_X = NULL;
-  DWORD GAMEPAD_Y = NULL;
-  DWORD GAMEPAD_TRIGGER_LEFT = NULL;
-  DWORD GAMEPAD_TRIGGER_RIGHT = NULL;
+	// Gopher Settings
+	DWORD _console_hide = NULL;
+	DWORD _disable_gopher = NULL;
+	DWORD _disable_vibration = NULL;
+	DWORD CONFIG_SPEED_CHANGE = NULL;
+	DWORD _disable_on_screen_keyboard = NULL;
 
-  // Button press state logic variables
-  std::map<DWORD, bool> _xboxClickStateLastIteration;
-  std::map<DWORD, bool> _xboxClickIsDown;
-  std::map<DWORD, bool> _xboxClickIsDownLong;
-  std::map<DWORD, int> _xboxClickDownLength;
-  std::map<DWORD, bool> _xboxClickIsUp;
+	// Gamepad bindings
+	DWORD _gamepad_dpad_up = NULL;
+	DWORD _gamepad_dpad_down = NULL;
+	DWORD _gamepad_dpad_left = NULL;
+	DWORD _gamepad_dpad_right = NULL;
+	DWORD _gamepad_start = NULL;
+	DWORD _gamepad_back = NULL;
+	DWORD _gamepad_left_thumb = NULL;
+	DWORD _gamepad_right_thumb = NULL;
+	DWORD _gamepad_A = NULL;
+	DWORD _gamepad_B = NULL;
+	DWORD _gamepad_X = NULL;
+	DWORD _gamepad_Y = NULL;
+	DWORD _gamepad_left_shoulder = NULL;
+	DWORD _gamepad_right_shoulder = NULL;
+	DWORD _gamepad_trigger_left = NULL;
+	DWORD _gamepad_trigger_right = NULL;
 
-  std::list<WORD> _pressedKeys;
+	// Button press state logic variables
+	std::map<DWORD, bool> _xboxClickStateLastIteration;
+	std::map<DWORD, bool> _xboxClickIsDown;
+	std::map<DWORD, bool> _xboxClickIsDownLong;
+	std::map<DWORD, int> _xboxClickDownLength;
+	std::map<DWORD, bool> _xboxClickIsUp;
 
-  CXBOXController* _controller;
+	std::list<WORD> _pressedKeys;
+
+	CXBOXController* _controller;
 
 public:
 
-  Gopher(CXBOXController* controller);
+	Gopher(CXBOXController* controller);
 
-  void loadConfigFile();
+	void LoadConfigFile(std::string fileName);
 
-  void loop();
-
-  void pulseVibrate(const int duration, const int l, const int r) const;
-
-  void toggleWindowVisibility();
-
-  void setWindowVisibility(const bool& hidden) const;
-
-  float getDelta(short tx);
-
-  float getMult(float length, float deadzone, float accel);
-
-  void handleMouseMovement();
-
-  void handleDisableButton();
-
-  void handleVibrationButton();
-
-  void handleScrolling();
-
-  void handleTriggers(WORD lKey, WORD rKey);
-
-  bool xboxClickStateExists(DWORD xinput);
-
-  void mapKeyboard(DWORD STATE, WORD key);
-
-  void mapMouseClick(DWORD STATE, DWORD keyDown, DWORD keyUp);
-
-  void setXboxClickState(DWORD state);
-
-  HWND getOskWindow();
+	void Run();
 
 private:
-
-  bool erasePressedKey(WORD key);
 };
