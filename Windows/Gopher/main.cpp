@@ -12,53 +12,32 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ---------------------------------------------------------------------------------*/
-
-//changes 0.96 -> 0.97: speed variable is global, detects bumpers, all timed (no enter), lbumper speed toggler
-//changes 0.97 -> 0.98: performance improvements, operational volume function, shorter beeps, no XY text
-//changes 0.98 -> 0.985: 144Hz, Y to hide window(added float stillHoldingY), code cleanup, comments added
-//changes 0.985 -> 0.986: Adding configuration file, changing from beeps to vibration.
-//changes 0.986 -> 0.989: Improved speeds and speed reporting, created automatic config generator!
-//TODO FOR FUTURE VERSIONS - offload speeds into config file
-
 #include <windows.h> // for Beep()
 #include <iostream>
-
+#include "Gopher.h"
 
 #pragma comment(lib, "XInput9_1_0.lib")
 #pragma comment(lib, "winmm") // for volume
 
-#include "Gopher.h"
 
 bool ChangeVolume(double nVolume, bool bScalar); // Not used yet
 BOOL isRunningAsAdministrator(); // Check if administrator, makes on-screen keyboard clickable
-
-/* TODO:
- * Enable/disable button
- * Key Codes:
- *   http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731%28v=vs.85%29.aspx
- * xinput:
- *   http://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.reference.xinput_gamepad%28v=vs.85%29.aspx
- */
 
 int main()
 {
   CXBOXController controller(1);
   Gopher gopher(&controller);
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTitle( TEXT( "Gopher360" ) );
-
+  SetConsoleTitle( TEXT( "Gopher360 !!!RELEASED!!!" ) );
   system("Color 0A");
-
   SetConsoleTextAttribute(hConsole, 5);
-  printf("Gopher is free (as in freedom) software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n");
-  
+  printf("Gopher is free (as in freedom) software: you can redistribute it and/or modify\n"
+	  "it under the terms of the GNU General Public License as published by\nthe Free Software"
+	  "Foundation, either version 3 of the License, or\n(at your option) any later version.\n");
   printf("\nTip: Press left and right bumpers simultaneously to toggle speeds!\n");
-
   printf("\n-------------------------\n\n");
 
   SetConsoleTextAttribute(hConsole, 15); 
-
-  // dump important tips
 
   if (isRunningAsAdministrator())
   {
