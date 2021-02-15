@@ -15,6 +15,7 @@
 #include "CXBOXController.h"
 #include "ConfigFile.h"
 #include "InputKeyboard.h"
+#include "MouseInput.h"
 
 #pragma once
 class Gopher
