@@ -82,13 +82,17 @@
     <ClCompile Include="ConfigFile.cpp" />
     <ClCompile Include="CXBOXController.cpp" />
     <ClCompile Include="Gopher.cpp" />
+    <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MouseInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigFile.h" />
     <ClInclude Include="Convert.h" />
     <ClInclude Include="CXBOXController.h" />
     <ClInclude Include="Gopher.h" />
+    <ClInclude Include="InputKeyboard.h" />
+    <ClInclude Include="MouseInput.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

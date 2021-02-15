@@ -14,6 +14,7 @@
 
 #include "CXBOXController.h"
 #include "ConfigFile.h"
+#include "InputKeyboard.h"
 
 #pragma once
 class Gopher
@@ -115,7 +116,7 @@ public:
 
 	void PulseVibrate(const int duration, const int l, const int r) const;
 	float GetDelta(short tx);
-	float GetMult(float length, float deadzone, float accel);
+	float GetMult(float length, float deadzone, float accel = 0.0f);
 
 
 	HWND GetOskWindow();

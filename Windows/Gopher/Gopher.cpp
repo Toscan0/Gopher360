@@ -507,7 +507,7 @@ float Gopher::GetDelta(short t)
 //   accel      An exponent to use to create an input curve (Optional). 0 to use a linear input
 // Returns:
 //   Multiplier used to properly scale the given thumbstick value.
-float Gopher::GetMult(float lengthsq, float deadzone, float accel = 0.0f)
+float Gopher::GetMult(float lengthsq, float deadzone, float accel)
 {
 	// Normalize the thumbstick value.
 	float mult = (sqrt(lengthsq) - deadzone) / (MAXSHORT - deadzone);
@@ -718,99 +718,14 @@ bool Gopher::XboxClickStateExists(DWORD STATE)
 	return true;
 }
 
-
-// Description:
-//   Finds the On-Screen Keyboard if it is open.
-// Returns:
-//   If found, the handle to the On-Screen Keyboard handle. Otherwise, returns NULL.
-HWND Gopher::GetOskWindow()
-{
-	HWND ret = NULL;
-	EnumWindows(EnumWindowsProc, (LPARAM)&ret);
-	return ret;
-}
-
-
-
-
-
-
-
-////////////////
-
-
-// Description:
-//   Send a keyboard input to the system based on the key value
-//     and its event type.
-// Params:
-//   cmd    The value of the key to send(see http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731%28v=vs.85%29.aspx)
-//   flag   The KEYEVENT for the key
-void InputKeyboard(WORD cmd, DWORD flag)
-{
-	INPUT input;
-	input.type = INPUT_KEYBOARD;
-	input.ki.wScan = 0;
-	input.ki.time = 0;
-	input.ki.dwExtraInfo = 0;
-	input.ki.wVk = cmd;
-	input.ki.dwFlags = flag;
-	SendInput(1, &input, sizeof(INPUT));
-}
-
-// Description:
-//   Send a keyboard input based on the key value with the "pressed down" event.
-// Params:
-//   cmd    The value of the key to send
-void InputKeyboardDown(WORD cmd)
-{
-	InputKeyboard(cmd, 0);
-}
-
-// Description:
-//   Send a keyboard input based on the key value with the "released" event
-//
-// Params:
-//   cmd    The value of the key to send
-void InputKeyboardUp(WORD cmd)
-{
-	InputKeyboard(cmd, KEYEVENTF_KEYUP);
-}
-
-// Description:
-//   Send a mouse input based on a mouse event type.
-//   See https://msdn.microsoft.com/en-us/library/windows/desktop/ms646310(v=vs.85).aspx
-// Params:
-//   dwFlags    The mouse event to send
-//   mouseData  Additional information needed for certain mouse events (Optional)
-void MouseEvent(DWORD dwFlags, DWORD mouseData = 0)
-{
-	INPUT input;
-	input.type = INPUT_MOUSE;
-
-	// Only set mouseData when using a supported dwFlags type
-	if (dwFlags == MOUSEEVENTF_WHEEL ||
-		dwFlags == MOUSEEVENTF_XUP ||
-		dwFlags == MOUSEEVENTF_XDOWN ||
-		dwFlags == MOUSEEVENTF_HWHEEL)
-	{
-		input.mi.mouseData = mouseData;
-	}
-	else
-	{
-		input.mi.mouseData = 0;
-	}
-
-	input.mi.dwFlags = dwFlags;
-	input.mi.time = 0;
-	SendInput(1, &input, sizeof(INPUT));
-}
-
 // Description:
 //   Callback function used for the EnumWindows call to determine if we
 //     have found the On-Screen Keyboard window.
+//
 // Params:
 //   curWnd   The current window to check
 //   lParam   A callback parameter used to store the window if it is found
+//
 // Returns:
 //   FALSE when the the desired window is found.
 static BOOL CALLBACK EnumWindowsProc(HWND curWnd, LPARAM lParam)
@@ -825,3 +740,15 @@ static BOOL CALLBACK EnumWindowsProc(HWND curWnd, LPARAM lParam)
 
 	return TRUE;
 }
+
+// Description:
+//   Finds the On-Screen Keyboard if it is open.
+// Returns:
+//   If found, the handle to the On-Screen Keyboard handle. Otherwise, returns NULL.
+HWND Gopher::GetOskWindow()
+{
+	HWND ret = NULL;
+	EnumWindows(EnumWindowsProc, (LPARAM)&ret);
+	return ret;
+}
+
