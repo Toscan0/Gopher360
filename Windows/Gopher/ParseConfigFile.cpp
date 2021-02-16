@@ -1,6 +1,6 @@
-#include "ConfigFile.h"
+#include "ParseConfigFile.h"
 
-void ConfigFile::RemoveComment(std::string &line) const
+void ParseConfigFile::RemoveComment(std::string &line) const
 {
   if (line.find('#') != line.npos)
   {
@@ -8,12 +8,12 @@ void ConfigFile::RemoveComment(std::string &line) const
   }
 }
 
-bool ConfigFile::OnlyWhitespace(const std::string &line) const
+bool ParseConfigFile::OnlyWhitespace(const std::string &line) const
 {
   return (line.find_first_not_of(' ') == line.npos);
 }
 
-bool ConfigFile::ValidLine(const std::string &line) const
+bool ParseConfigFile::ValidLine(const std::string &line) const
 {
   std::string temp = line;
   temp.erase(0, temp.find_first_not_of("\t "));
@@ -33,7 +33,7 @@ bool ConfigFile::ValidLine(const std::string &line) const
   return false;
 }
 
-void ConfigFile::ExtractKey(std::string &key, size_t const &sepPos, const std::string &line) const
+void ParseConfigFile::ExtractKey(std::string &key, size_t const &sepPos, const std::string &line) const
 {
   key = line.substr(0, sepPos);
   if (key.find('\t') != line.npos || key.find(' ') != line.npos)
@@ -41,14 +41,14 @@ void ConfigFile::ExtractKey(std::string &key, size_t const &sepPos, const std::s
     key.erase(key.find_first_of("\t "));
   }
 }
-void ConfigFile::ExtractValue(std::string &value, size_t const &sepPos, const std::string &line) const
+void ParseConfigFile::ExtractValue(std::string &value, size_t const &sepPos, const std::string &line) const
 {
   value = line.substr(sepPos + 1);
   value.erase(0, value.find_first_not_of("\t "));
   value.erase(value.find_last_not_of("\t ") + 1);
 }
 
-void ConfigFile::ExtractContents(const std::string &line)
+void ParseConfigFile::ExtractContents(const std::string &line)
 {
   std::string temp = line;
   temp.erase(0, temp.find_first_not_of("\t "));
@@ -68,7 +68,7 @@ void ConfigFile::ExtractContents(const std::string &line)
   }
 }
 
-void ConfigFile::ParseLine(const std::string &line, size_t const lineNo)
+void ParseConfigFile::ParseLine(const std::string &line, size_t const lineNo)
 {
   if (line.find('=') == line.npos)
   {
@@ -83,7 +83,7 @@ void ConfigFile::ParseLine(const std::string &line, size_t const lineNo)
   ExtractContents(line);
 }
 
-void ConfigFile::ExtractKeys()
+void ParseConfigFile::ExtractKeys()
 {
   std::ifstream file;
   file.open(file_name.c_str());
@@ -185,18 +185,18 @@ void ConfigFile::ExtractKeys()
   file.close();
 }
 
-ConfigFile::ConfigFile(const std::string &fName)
+ParseConfigFile::ParseConfigFile(const std::string &fName)
 {
   this->file_name = fName;
   ExtractKeys();
 }
 
-bool ConfigFile::keyExists(const std::string &key) const
+bool ParseConfigFile::keyExists(const std::string &key) const
 {
   return contents.find(key) != contents.end();
 }
 
-void ConfigFile::ExitWithError(const std::string &error)
+void ParseConfigFile::ExitWithError(const std::string &error)
 {
   std::cout << error;
   std::cin.ignore();

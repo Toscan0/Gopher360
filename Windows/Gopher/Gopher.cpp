@@ -7,7 +7,7 @@ Gopher::Gopher(CXBOXController * controller) :
 
 void Gopher::LoadConfigFile(std::string fileName)
 {
-	ConfigFile cfg(fileName);
+	ParseConfigFile cfg(fileName);
 
 	//--------------------------------
 	// Mouse bindings

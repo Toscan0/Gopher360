@@ -7,7 +7,7 @@
 #include <windows.h>
 #include "Convert.h"
 
-class ConfigFile
+class ParseConfigFile
 {
 	private:
 	  std::map<std::string, std::string> contents;
@@ -27,7 +27,7 @@ class ConfigFile
 
 
 	public:
-	  ConfigFile(const std::string &fName);
+		ParseConfigFile(const std::string &fName);
 
 	  bool keyExists(const std::string &key) const;
 

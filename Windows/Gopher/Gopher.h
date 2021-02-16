@@ -10,7 +10,7 @@
 #include <xinput.h> // controller
 #include <stdio.h> // for printf
 #include "CXBOXController.h"
-#include "ConfigFile.h"
+#include "ParseConfigFile.h"
 #include "InputKeyboard.h"
 #include "MouseInput.h"
 
