@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GenerateConfigFile.cpp" />
     <ClCompile Include="ParseConfigFile.cpp" />
     <ClCompile Include="CXBOXController.cpp" />
     <ClCompile Include="Gopher.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="VolumeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GenerateConfigFile.h" />
     <ClInclude Include="ParseConfigFile.h" />
     <ClInclude Include="Convert.h" />
     <ClInclude Include="CXBOXController.h" />

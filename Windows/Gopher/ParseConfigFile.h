@@ -5,9 +5,10 @@
 #include <map>
 #include <fstream>
 #include <windows.h>
+#include "ConfigFile.h"
 #include "Convert.h"
 
-class ParseConfigFile
+class ParseConfigFile : public ConfigFile
 {
 	private:
 	  std::map<std::string, std::string> contents;
@@ -39,6 +40,4 @@ class ParseConfigFile
 
 		return Convert::String_to_T<ValueType>(contents.find(key)->second);
 	  };
-
-	  void ExitWithError(const std::string &error);
 };
