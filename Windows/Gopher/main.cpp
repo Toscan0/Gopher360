@@ -29,7 +29,7 @@ int main()
   Gopher gopher(&controller, &volumeManager);
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-  SetConsoleTitle( TEXT( "Gopher360 !!!RELEASED!!!" ) );
+  SetConsoleTitle( TEXT( "Gopher360" ) );
   system("Color 0A");
   SetConsoleTextAttribute(hConsole, 5);
   printf("Gopher is free (as in freedom) software: you can redistribute it and/or modify\n"
