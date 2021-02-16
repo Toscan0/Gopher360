@@ -66,7 +66,6 @@ GenerateConfigFile::GenerateConfigFile(std::string file_name)
 	}
 	else
 	{
-
 		printf("Success!\nNow using %s.\n", file_name.c_str());
 	}
 }

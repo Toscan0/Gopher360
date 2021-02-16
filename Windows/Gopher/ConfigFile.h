@@ -7,6 +7,9 @@ class ConfigFile
 {
 
 public:
+
+	void Start();
 	void ExitWithError(const std::string &error);
+
 };
 

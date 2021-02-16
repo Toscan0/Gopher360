@@ -1,5 +1,10 @@
 #include "ConfigFile.h"
 
+void ConfigFile::Start()
+{
+	
+}
+
 void ConfigFile::ExitWithError(const std::string &error)
 {
 	std::cout << error;
