@@ -13,7 +13,6 @@
 #include "ConfigFile.h"
 #include "InputKeyboard.h"
 #include "MouseInput.h"
-#include "VolumeManager.h"
 
 #pragma once
 class Gopher
@@ -93,10 +92,9 @@ private:
 	std::list<WORD> _pressed_keys;
 
 	CXBOXController *_controller;
-	VolumeManager *_volumeManager;
-public:
 
-	Gopher(CXBOXController* controller, VolumeManager *volume_manager);
+public:
+	Gopher(CXBOXController* controller);
 
 	void LoadConfigFile(std::string fileName);
 	void Run();

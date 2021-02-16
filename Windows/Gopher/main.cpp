@@ -25,8 +25,7 @@ BOOL IsRunningAsAdministrator(); // Check if administrator, makes on-screen keyb
 int main()
 {
   CXBOXController controller(1);
-  VolumeManager volumeManager;
-  Gopher gopher(&controller, &volumeManager);
+  Gopher gopher(&controller);
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
   SetConsoleTitle( TEXT( "Gopher360" ) );

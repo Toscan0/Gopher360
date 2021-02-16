@@ -1,6 +1,7 @@
 #include "Gopher.h"
 
-Gopher::Gopher(CXBOXController * controller, VolumeManager * volume_manager) : _controller(controller), _volumeManager{ (volume_manager) }
+Gopher::Gopher(CXBOXController * controller) :
+	_controller(controller)
 {
 }
 
@@ -456,8 +457,6 @@ void Gopher::HandleTriggers(WORD lKey, WORD rKey)
 		if (lTriggerIsDown)
 		{
 			InputKeyboardDown(lKey);
-
-			_volumeManager->DecreaseVolume(_kOffset);
 		}
 		else
 		{
@@ -472,8 +471,6 @@ void Gopher::HandleTriggers(WORD lKey, WORD rKey)
 		if (rTriggerIsDown)
 		{
 			InputKeyboardDown(rKey);
-
-			_volumeManager->IncrementVolume(_kOffset);
 
 		}
 		else
