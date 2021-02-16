@@ -1,7 +1,6 @@
 #include "Gopher.h"
 
-Gopher::Gopher(CXBOXController * controller)
-	: _controller(controller)
+Gopher::Gopher(CXBOXController * controller, VolumeManager * volume_manager) : _controller(controller), _volumeManager{ (volume_manager) }
 {
 }
 
@@ -458,7 +457,7 @@ void Gopher::HandleTriggers(WORD lKey, WORD rKey)
 		{
 			InputKeyboardDown(lKey);
 
-			ChangeVolume(0.3f);
+			_volumeManager->DecreaseVolume(_kOffset);
 		}
 		else
 		{
@@ -473,6 +472,9 @@ void Gopher::HandleTriggers(WORD lKey, WORD rKey)
 		if (rTriggerIsDown)
 		{
 			InputKeyboardDown(rKey);
+
+			_volumeManager->IncrementVolume(_kOffset);
+
 		}
 		else
 		{
@@ -752,40 +754,4 @@ HWND Gopher::GetOskWindow()
 	HWND ret = NULL;
 	EnumWindows(EnumWindowsProc, (LPARAM)&ret);
 	return ret;
-}
-
-bool Gopher::ChangeVolume(float newVolume)
-{
-	HRESULT hr = NULL;
-
-	CoInitialize(NULL);
-
-	IMMDeviceEnumerator *deviceEnumerator = NULL;
-	hr = CoCreateInstance(__uuidof(MMDeviceEnumerator), NULL, CLSCTX_INPROC_SERVER,
-		__uuidof(IMMDeviceEnumerator), (LPVOID *)&deviceEnumerator);
-	if (FAILED(hr)) {
-		return FALSE;
-	}
-
-	IMMDevice *defaultDevice = NULL;
-	hr = deviceEnumerator->GetDefaultAudioEndpoint(eRender, eConsole, &defaultDevice);
-	deviceEnumerator->Release();
-	if (FAILED(hr)) {
-		return FALSE;
-	}
-
-	IAudioEndpointVolume *endpointVolume = NULL;
-	hr = defaultDevice->Activate(__uuidof(IAudioEndpointVolume),
-		CLSCTX_INPROC_SERVER, NULL, (LPVOID *)&endpointVolume);
-	defaultDevice->Release();
-	if (FAILED(hr)) {
-		return FALSE;
-	}
-	
-	hr = endpointVolume->SetMasterVolumeLevelScalar(newVolume, NULL);
-	endpointVolume->Release();
-	
-	CoUninitialize();
-
-	return SUCCEEDED(hr);
 }

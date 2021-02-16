@@ -85,6 +85,7 @@
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MouseInput.cpp" />
+    <ClCompile Include="VolumeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigFile.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="InputKeyboard.h" />
     <ClInclude Include="MouseInput.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="VolumeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

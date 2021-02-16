@@ -9,12 +9,11 @@
 #include <ShlObj.h>
 #include <xinput.h> // controller
 #include <stdio.h> // for printf
-#include <mmdeviceapi.h> // volume
-#include <endpointvolume.h> // volume
 #include "CXBOXController.h"
 #include "ConfigFile.h"
 #include "InputKeyboard.h"
 #include "MouseInput.h"
+#include "VolumeManager.h"
 
 #pragma once
 class Gopher
@@ -50,6 +49,9 @@ private:
 	std::vector<float> speeds;	            // Contains actual speeds to choose
 	std::vector<std::string> speed_names;   // Contains display names of speeds to display
 	unsigned int speed_idx = 0;
+
+	// Volume
+	const float _kOffset = 0.02f;
 
 	// Mouse Clicks
 	DWORD _mouse_left_click = NULL;
@@ -90,11 +92,11 @@ private:
 
 	std::list<WORD> _pressed_keys;
 
-	CXBOXController* _controller;
-
+	CXBOXController *_controller;
+	VolumeManager *_volumeManager;
 public:
 
-	Gopher(CXBOXController* controller);
+	Gopher(CXBOXController* controller, VolumeManager *volume_manager);
 
 	void LoadConfigFile(std::string fileName);
 	void Run();
@@ -118,7 +120,6 @@ public:
 	float GetDelta(short tx);
 	float GetMult(float length, float deadzone, float accel = 0.0f);
 	
-	bool ChangeVolume(float newVolume);
 	HWND GetOskWindow();
 
 private:

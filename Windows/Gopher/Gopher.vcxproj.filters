@@ -33,6 +33,9 @@
     <ClCompile Include="MouseInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VolumeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gopher.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MouseInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VolumeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
