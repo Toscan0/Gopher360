@@ -8,7 +8,8 @@ My changes
 ======
 * Color Scheme: Changed to a dark theme, to suit dark mode users
   <details><summary>Theme Preview</summary><img src="https://github.com/Toscan0/Gopher360/blob/master/Imgs/ColorScheme.png"></details>
-* Being able to choose the default load speed
+* Being able to choose the default mouse speed
+* Allow to Increment and Decrement the Windows sound using the triggers button
 * A new config file
 
 Download
