@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="ConfigFile.cpp" />
     <ClCompile Include="GenerateConfigFile.cpp" />
+    <ClCompile Include="OnScreenKeyboard.cpp" />
     <ClCompile Include="ParseConfigFile.cpp" />
     <ClCompile Include="CXBOXController.cpp" />
     <ClCompile Include="Gopher.cpp" />
@@ -92,6 +93,7 @@
   <ItemGroup>
     <ClInclude Include="ConfigFile.h" />
     <ClInclude Include="GenerateConfigFile.h" />
+    <ClInclude Include="OnScreenKeyboard.h" />
     <ClInclude Include="ParseConfigFile.h" />
     <ClInclude Include="Convert.h" />
     <ClInclude Include="CXBOXController.h" />

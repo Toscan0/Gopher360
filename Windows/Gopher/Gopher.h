@@ -13,6 +13,7 @@
 #include "ParseConfigFile.h"
 #include "InputKeyboard.h"
 #include "MouseInput.h"
+#include <shellapi.h>
 
 #pragma once
 class Gopher
@@ -118,8 +119,7 @@ public:
 	float GetDelta(short tx);
 	float GetMult(float length, float deadzone, float accel = 0.0f);
 	
-	HWND GetOskWindow();
-
+	void LaunchOSK();
 private:
 	bool ErasePressedKey(WORD key);
 };

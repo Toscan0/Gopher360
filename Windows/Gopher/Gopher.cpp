@@ -182,20 +182,7 @@ void Gopher::Run()
 		SetXboxClickState(_disable_on_screen_keyboard);
 		if (_xbox_click_is_down[_disable_on_screen_keyboard])
 		{
-			// Get the otk window
-			HWND otk_win = GetOskWindow();
-			if (otk_win == NULL)
-			{
-				printf("Please start the On-screen keyboard first\n");
-			}
-			else if (IsIconic(otk_win))
-			{
-				ShowWindow(otk_win, SW_RESTORE);
-			}
-			else
-			{
-				ShowWindow(otk_win, SW_MINIMIZE);
-			}
+			LaunchOSK();
 		}
 	}
 
@@ -719,36 +706,11 @@ bool Gopher::XboxClickStateExists(DWORD STATE)
 	return true;
 }
 
-// Description:
-//   Callback function used for the EnumWindows call to determine if we
-//     have found the On-Screen Keyboard window.
-//
-// Params:
-//   curWnd   The current window to check
-//   lParam   A callback parameter used to store the window if it is found
-//
-// Returns:
-//   FALSE when the the desired window is found.
-static BOOL CALLBACK EnumWindowsProc(HWND curWnd, LPARAM lParam)
-{
-	TCHAR title[256];
-	// Check to see if the window title matches what we are looking for.
-	if (GetWindowText(curWnd, title, 256) && !_tcscmp(title, _T("On-Screen Keyboard")))
-	{
-		*(HWND*)lParam = curWnd;
-		return FALSE;  // Correct window found, stop enumerating through windows.
-	}
 
-	return TRUE;
-}
-
-// Description:
-//   Finds the On-Screen Keyboard if it is open.
-// Returns:
-//   If found, the handle to the On-Screen Keyboard handle. Otherwise, returns NULL.
-HWND Gopher::GetOskWindow()
+void Gopher::LaunchOSK()
 {
-	HWND ret = NULL;
-	EnumWindows(EnumWindowsProc, (LPARAM)&ret);
-	return ret;
+	void *was;
+	Wow64DisableWow64FsRedirection(&was);
+	ShellExecuteA(NULL, "open", "osk.exe", NULL, NULL, SW_SHOWNORMAL);
+	Wow64RevertWow64FsRedirection(was);
 }
