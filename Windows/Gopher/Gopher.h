@@ -51,7 +51,7 @@ private:
 	unsigned int speed_idx = 0;
 
 	// Volume
-	const float _kOffset = 0.02f;
+	const float _k_volume_offset = 0.02f;
 
 	// Mouse Clicks
 	DWORD _mouse_left_click = NULL;
