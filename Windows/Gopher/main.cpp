@@ -39,11 +39,6 @@ int main()
 
   SetConsoleTextAttribute(hConsole, 15); 
 
-  if (IsRunningAsAdministrator())
-  {
-    printf("Tip - Not running as an admin! Windows on-screen keyboard and others won't work without admin rights.\n");
-  }
-
   gopher.LoadConfigFile("config.ini");
   while (true)
   {
