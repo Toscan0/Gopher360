@@ -53,6 +53,9 @@ private:
 	// Volume
 	const float _k_volume_offset = 0.02f;
 
+	// On-Screen keyboard
+	bool _show_osk = false;
+
 	// Mouse keys
 	DWORD _mouse_left_click_key = NULL;
 	DWORD _mouse_right_click_key = NULL;

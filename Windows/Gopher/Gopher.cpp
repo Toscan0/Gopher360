@@ -709,8 +709,20 @@ bool Gopher::XboxClickStateExists(DWORD STATE)
 
 void Gopher::LaunchOSK()
 {
-	void *was;
-	Wow64DisableWow64FsRedirection(&was);
-	ShellExecuteA(NULL, "open", "osk.exe", NULL, NULL, SW_SHOWNORMAL);
-	Wow64RevertWow64FsRedirection(was);
+	_show_osk = !_show_osk;
+
+	if (_show_osk) {
+		printf("show osk: %d\n", _show_osk);
+		void *was;
+		Wow64DisableWow64FsRedirection(&was);
+		ShellExecuteA(NULL, "open", "osk.exe", NULL, NULL, SW_SHOWNORMAL);
+		Wow64RevertWow64FsRedirection(was);
+	}
+	else {
+		void *was;
+		Wow64DisableWow64FsRedirection(&was);
+		ShellExecuteA(NULL, "open", "osk.exe", NULL, NULL, SW_SHOWNORMAL);
+		Wow64RevertWow64FsRedirection(was);
+	}
+	
 }
