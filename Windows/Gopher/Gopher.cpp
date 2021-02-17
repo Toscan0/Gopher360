@@ -12,38 +12,38 @@ void Gopher::LoadConfigFile(std::string fileName)
 	//--------------------------------
 	// Mouse bindings
 	//--------------------------------
-	_mouse_left_click = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_LEFT").c_str(), 0, 0);
-	_mouse_right_click = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_RIGHT").c_str(), 0, 0);
-	_mouse_middle_click = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_MIDDLE").c_str(), 0, 0);
+	_mouse_left_click_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_LEFT").c_str(), 0, 0);
+	_mouse_right_click_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_RIGHT").c_str(), 0, 0);
+	_mouse_middle_click_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_MOUSE_MIDDLE").c_str(), 0, 0);
 	
 	//--------------------------------
 	// Gopher bindings
 	//--------------------------------
-	_console_hide = strtol(cfg.GetValueOfKey<std::string>("CONFIG_HIDE").c_str(), 0, 0);
-	_disable_gopher = strtol(cfg.GetValueOfKey<std::string>("CONFIG_DISABLE").c_str(), 0, 0);
-	_disable_vibration = strtol(cfg.GetValueOfKey<std::string>("CONFIG_DISABLE_VIBRATION").c_str(), 0, 0);
-	CONFIG_SPEED_CHANGE = strtol(cfg.GetValueOfKey<std::string>("CONFIG_SPEED_CHANGE").c_str(), 0, 0);
-	_disable_on_screen_keyboard = strtol(cfg.GetValueOfKey<std::string>("CONFIG_OSK").c_str(), 0, 0);
+	_console_hide_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_HIDE").c_str(), 0, 0);
+	_disable_gopher_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_DISABLE").c_str(), 0, 0);
+	_disable_vibration_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_DISABLE_VIBRATION").c_str(), 0, 0);
+	_mouse_speed_change_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_SPEED_CHANGE").c_str(), 0, 0);
+	_on_screen_keyboard_key = strtol(cfg.GetValueOfKey<std::string>("CONFIG_OSK").c_str(), 0, 0);
 
 	//--------------------------------
 	// Controller bindings
 	//--------------------------------
-	_gamepad_left_thumb = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_LEFT_THUMB").c_str(), 0, 0);
-	_gamepad_right_thumb = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_RIGHT_THUMB").c_str(), 0, 0);
-	_gamepad_dpad_up = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_UP").c_str(), 0, 0);
-	_gamepad_dpad_down = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_DOWN").c_str(), 0, 0);
-	_gamepad_dpad_left = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_LEFT").c_str(), 0, 0);
-	_gamepad_dpad_right = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_RIGHT").c_str(), 0, 0);
-	_gamepad_A = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_A").c_str(), 0, 0);
-	_gamepad_B = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_B").c_str(), 0, 0);
-	_gamepad_X = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_X").c_str(), 0, 0);
-	_gamepad_Y = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_Y").c_str(), 0, 0);
-	_gamepad_left_shoulder = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_LEFT_SHOULDER").c_str(), 0, 0);
-	_gamepad_right_shoulder = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_RIGHT_SHOULDER").c_str(), 0, 0);
-	_gamepad_trigger_left = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_TRIGGER_LEFT").c_str(), 0, 0);
-	_gamepad_trigger_right = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_TRIGGER_RIGHT").c_str(), 0, 0);
-	_gamepad_start = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_START").c_str(), 0, 0);
-	_gamepad_back = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_BACK").c_str(), 0, 0);
+	_gamepad_left_thumb_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_LEFT_THUMB").c_str(), 0, 0);
+	_gamepad_right_thumb_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_RIGHT_THUMB").c_str(), 0, 0);
+	_gamepad_dpad_up_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_UP").c_str(), 0, 0);
+	_gamepad_dpad_down_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_DOWN").c_str(), 0, 0);
+	_gamepad_dpad_left_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_LEFT").c_str(), 0, 0);
+	_gamepad_dpad_right_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_DPAD_RIGHT").c_str(), 0, 0);
+	_gamepad_A_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_A").c_str(), 0, 0);
+	_gamepad_B_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_B").c_str(), 0, 0);
+	_gamepad_X_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_X").c_str(), 0, 0);
+	_gamepad_Y_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_Y").c_str(), 0, 0);
+	_gamepad_left_shoulder_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_LEFT_SHOULDER").c_str(), 0, 0);
+	_gamepad_right_shoulder_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_RIGHT_SHOULDER").c_str(), 0, 0);
+	_gamepad_trigger_left_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_TRIGGER_LEFT").c_str(), 0, 0);
+	_gamepad_trigger_right_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_TRIGGER_RIGHT").c_str(), 0, 0);
+	_gamepad_start_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_START").c_str(), 0, 0);
+	_gamepad_back_key = strtol(cfg.GetValueOfKey<std::string>("GAMEPAD_BACK").c_str(), 0, 0);
 
 	//--------------------------------
 	// Advanced settings
@@ -126,7 +126,7 @@ void Gopher::LoadConfigFile(std::string fileName)
 	_swap_thumbsticks = strtol(cfg.GetValueOfKey<std::string>("SWAP_THUMBSTICKS").c_str(), 0, 0);
 
 	// Set the initial window visibility
-	SetWindowVisibility(_hidden);
+	SetWindowVisibility(_show_console);
 }
 
 // Description:
@@ -141,7 +141,7 @@ void Gopher::Run()
 
 	// Disable Gopher
 	HandleDisableButton();
-	if (_disabled)
+	if (_disable_gopher)
 	{
 		return;
 	}
@@ -153,45 +153,45 @@ void Gopher::Run()
 	HandleMouseMovement();
 	HandleScrolling();
 
-	if (_mouse_left_click)
+	if (_mouse_left_click_key)
 	{
-		MapMouseClick(_mouse_left_click, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);
+		MapMouseClick(_mouse_left_click_key, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);
 	}
-	if (_mouse_right_click)
+	if (_mouse_right_click_key)
 	{
-		MapMouseClick(_mouse_right_click, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP);
+		MapMouseClick(_mouse_right_click_key, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP);
 	}
-	if (_mouse_middle_click)
+	if (_mouse_middle_click_key)
 	{
-		MapMouseClick(_mouse_middle_click, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP);
+		MapMouseClick(_mouse_middle_click_key, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP);
 	}
 
 	// Hides the console
-	if (_console_hide)
+	if (_console_hide_key)
 	{
-		SetXboxClickState(_console_hide);
-		if (_xbox_click_is_down[_console_hide])
+		SetXboxClickState(_console_hide_key);
+		if (_xbox_click_is_down[_console_hide_key])
 		{
 			ToggleWindowVisibility();
 		}
 	}
 
 	// Toggle the on-screen keyboard
-	if (_disable_on_screen_keyboard)
+	if (_on_screen_keyboard_key)
 	{
-		SetXboxClickState(_disable_on_screen_keyboard);
-		if (_xbox_click_is_down[_disable_on_screen_keyboard])
+		SetXboxClickState(_on_screen_keyboard_key);
+		if (_xbox_click_is_down[_on_screen_keyboard_key])
 		{
 			LaunchOSK();
 		}
 	}
 
 	// Will change between the current speed values
-	SetXboxClickState(CONFIG_SPEED_CHANGE);
-	if (_xbox_click_is_down[CONFIG_SPEED_CHANGE])
+	SetXboxClickState(_mouse_speed_change_key);
+	if (_xbox_click_is_down[_mouse_speed_change_key])
 	{
-		const int CHANGE_SPEED_VIBRATION_INTENSITY = 65000;   // Speed of the vibration motors when changing cursor speed.
-		const int CHANGE_SPEED_VIBRATION_DURATION = 450;      // Duration of the cursor speed change vibration in milliseconds.
+		const int kChange_spped_vibration_intensity = 65000;   // Speed of the vibration motors when changing cursor speed.
+		const int kChange_spped_vibration_duration = 450;      // Duration of the cursor speed change vibration in milliseconds.
 
 		speed_idx++;
 		if (speed_idx >= speeds.size())
@@ -201,68 +201,68 @@ void Gopher::Run()
 		_speed = speeds[speed_idx];
 		printf("Setting speed to %f (%s)...\n", _speed, 
 			speed_names[speed_idx].c_str());
-		PulseVibrate(CHANGE_SPEED_VIBRATION_DURATION, 
-			CHANGE_SPEED_VIBRATION_INTENSITY, 
-			CHANGE_SPEED_VIBRATION_INTENSITY);
+		PulseVibrate(kChange_spped_vibration_duration,
+			kChange_spped_vibration_intensity,
+			kChange_spped_vibration_intensity);
 	}
 
 	// Update all controller keys.
-	HandleTriggers(_gamepad_trigger_left, _gamepad_trigger_right);
-	if (_gamepad_dpad_up)
+	HandleTriggers(_gamepad_trigger_left_key, _gamepad_trigger_right_key);
+	if (_gamepad_dpad_up_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_DPAD_UP, _gamepad_dpad_up);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_UP, _gamepad_dpad_up_key);
 	}
-	if (_gamepad_dpad_down)
+	if (_gamepad_dpad_down_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_DPAD_DOWN, _gamepad_dpad_down);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_DOWN, _gamepad_dpad_down_key);
 	}
-	if (_gamepad_dpad_left)
+	if (_gamepad_dpad_left_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_DPAD_LEFT, _gamepad_dpad_left);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_LEFT, _gamepad_dpad_left_key);
 	}
-	if (_gamepad_dpad_right)
+	if (_gamepad_dpad_right_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_DPAD_RIGHT, _gamepad_dpad_right);
+		MapKeyboard(XINPUT_GAMEPAD_DPAD_RIGHT, _gamepad_dpad_right_key);
 	}
-	if (_gamepad_start)
+	if (_gamepad_start_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_START, _gamepad_start);
+		MapKeyboard(XINPUT_GAMEPAD_START, _gamepad_start_key);
 	}
-	if (_gamepad_back)
+	if (_gamepad_back_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_BACK, _gamepad_back);
+		MapKeyboard(XINPUT_GAMEPAD_BACK, _gamepad_back_key);
 	}
-	if (_gamepad_left_thumb)
+	if (_gamepad_left_thumb_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_LEFT_THUMB, _gamepad_left_thumb);
+		MapKeyboard(XINPUT_GAMEPAD_LEFT_THUMB, _gamepad_left_thumb_key);
 	}
-	if (_gamepad_right_thumb)
+	if (_gamepad_right_thumb_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_RIGHT_THUMB, _gamepad_right_thumb);
+		MapKeyboard(XINPUT_GAMEPAD_RIGHT_THUMB, _gamepad_right_thumb_key);
 	}
-	if (_gamepad_left_shoulder)
+	if (_gamepad_left_shoulder_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_LEFT_SHOULDER, _gamepad_left_shoulder);
+		MapKeyboard(XINPUT_GAMEPAD_LEFT_SHOULDER, _gamepad_left_shoulder_key);
 	}
-	if (_gamepad_right_shoulder)
+	if (_gamepad_right_shoulder_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_RIGHT_SHOULDER, _gamepad_right_shoulder);
+		MapKeyboard(XINPUT_GAMEPAD_RIGHT_SHOULDER, _gamepad_right_shoulder_key);
 	}
-	if (_gamepad_A)
+	if (_gamepad_A_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_A, _gamepad_A);
+		MapKeyboard(XINPUT_GAMEPAD_A, _gamepad_A_key);
 	}
-	if (_gamepad_B)
+	if (_gamepad_B_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_B, _gamepad_B);
+		MapKeyboard(XINPUT_GAMEPAD_B, _gamepad_B_key);
 	}
-	if (_gamepad_X)
+	if (_gamepad_X_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_X, _gamepad_X);
+		MapKeyboard(XINPUT_GAMEPAD_X, _gamepad_X_key);
 	}
-	if (_gamepad_Y)
+	if (_gamepad_Y_key)
 	{
-		MapKeyboard(XINPUT_GAMEPAD_Y, _gamepad_Y);
+		MapKeyboard(XINPUT_GAMEPAD_Y, _gamepad_Y_key);
 	}
 }
 
@@ -272,15 +272,15 @@ void Gopher::Run()
 //	for the disable configuration command.
 void Gopher::HandleDisableButton()
 {
-	SetXboxClickState(_disable_gopher);
-	if (_xbox_click_is_down[_disable_gopher])
+	SetXboxClickState(_disable_gopher_key);
+	if (_xbox_click_is_down[_disable_gopher_key])
 	{
 		int duration = 0;   // milliseconds
 		int intensity = 0;  // vibration intensity
 
-		_disabled = !_disabled;
+		_disable_gopher = !_disable_gopher;
 
-		if (_disabled)
+		if (_disable_gopher)
 		{
 			// Transition to a disabled state.
 			duration = 400;
@@ -330,11 +330,11 @@ void Gopher::HandleDisableButton()
 //	the vibration.
 void Gopher::HandleVibrationButton()
 {
-	SetXboxClickState(_disable_vibration);
-	if (_xbox_click_is_down[_disable_vibration])
+	SetXboxClickState(_disable_vibration_key);
+	if (_xbox_click_is_down[_disable_vibration_key])
 	{
-		_vibration_disabled = !_vibration_disabled;
-		printf("Vibration %s\n", _vibration_disabled ? "Disabled" : "Enabled");
+		_disable_vibration = !_disable_vibration;
+		printf("Vibration %s\n", _disable_vibration ? "Disabled" : "Enabled");
 		Sleep(1000);
 	}
 }
@@ -433,9 +433,9 @@ void Gopher::HandleScrolling()
 void Gopher::HandleTriggers(WORD lKey, WORD rKey)
 {
 	bool lTriggerIsDown = _current_state.Gamepad.bLeftTrigger > 
-		TRIGGER_DEAD_ZONE;
+		_kTriggers_dead_zone;
 	bool rTriggerIsDown = _current_state.Gamepad.bRightTrigger >
-		TRIGGER_DEAD_ZONE;
+		_kTriggers_dead_zone;
 
 	// Handle left trigger
 	if (lTriggerIsDown != _left_trigger_previous)
@@ -512,9 +512,9 @@ float Gopher::GetMult(float lengthsq, float deadzone, float accel)
 //   Toggles the visibility of the window.
 void Gopher::ToggleWindowVisibility()
 {
-	_hidden = !_hidden;
-	printf("Window %s\n", _hidden ? "hidden" : "unhidden");
-	SetWindowVisibility(_hidden);
+	_show_console = !_show_console;
+	printf("Window %s\n", _show_console ? "hidden" : "unhidden");
+	SetWindowVisibility(_show_console);
 }
 
 // Description:
@@ -524,7 +524,7 @@ void Gopher::ToggleWindowVisibility()
 void Gopher::SetWindowVisibility(const bool &hidden) const
 {
 	HWND hWnd = GetConsoleWindow();
-	ShowWindow(hWnd, _hidden ? SW_HIDE : SW_SHOW);
+	ShowWindow(hWnd, _show_console ? SW_HIDE : SW_SHOW);
 }
 
 // Description:
@@ -537,7 +537,7 @@ void Gopher::SetWindowVisibility(const bool &hidden) const
 //   r          The speed (intensity) of the right vibration motor
 void Gopher::PulseVibrate(const int duration, const int l, const int r) const
 {
-	if (!_vibration_disabled)
+	if (!_disable_vibration)
 	{
 		_controller->Vibrate(l, r);
 		Sleep(duration);

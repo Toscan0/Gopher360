@@ -20,8 +20,6 @@
 #pragma comment(lib, "XInput9_1_0.lib")
 #pragma comment(lib, "winmm") // for volume
 
-BOOL IsRunningAsAdministrator(); // Check if administrator, makes on-screen keyboard clickable
-
 int main()
 {
   CXBOXController controller(1);
@@ -44,28 +42,4 @@ int main()
   {
     gopher.Run();
   }
-}
-
-BOOL IsRunningAsAdministrator()
-{
-  BOOL   fRet = FALSE;
-  HANDLE hToken = NULL;
-
-  if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken))
-  {
-    TOKEN_ELEVATION Elevation;
-    DWORD cbSize = sizeof( TOKEN_ELEVATION );
-
-    if (GetTokenInformation(hToken, TokenElevation, &Elevation, sizeof( Elevation), &cbSize))
-    {
-      fRet = Elevation.TokenIsElevated;
-    }
-  }
-
-  if (hToken)
-  {
-    CloseHandle(hToken);
-  }
-
-  return fRet;
 }
